@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 // const { MongoClient, ServerApiVersion } = require('mongodb');
 require('dotenv').config();
+const cors = require('cors');
 
 const typeOfPokemonRoutes = require('./routes/typePokemonRoutes')
 const pokemonRoutes = require('./routes/pokemonRoutes')
@@ -13,6 +14,7 @@ const dbURI = process.env.MONGO_URL
 
 // Middleware para analizar el cuerpo de las solicitudes JSON
 app.use(bodyParser.json())
+app.use(cors());
 
 mongoose.connect(dbURI, {
   useNewUrlParser: true,
