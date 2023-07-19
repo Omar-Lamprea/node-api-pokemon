@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const { MongoClient, ServerApiVersion } = require('mongodb');
 
 const typeOfPokemonRoutes = require('./routes/typePokemonRoutes')
 const pokemonRoutes = require('./routes/pokemonRoutes')
@@ -11,7 +12,9 @@ const port = 3000;
 // Middleware para analizar el cuerpo de las solicitudes JSON
 app.use(bodyParser.json())
 
-const dbURI = 'mongodb://localhost:27017/api-pokemon-db';
+//const dbURI = 'mongodb://localhost:27017/api-pokemon-db';
+const dbURI = 'mongodb+srv://lampreaomar:rw99chG0UXMs2HvO@cluster0.l3wdep4.mongodb.net/?retryWrites=true&w=majority';
+
 mongoose.connect(dbURI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -25,5 +28,5 @@ app.use('/api', pokemonRoutes);
 
 
 app.listen(port, () => {
-  console.log(`Servidor escuchando en http://localhost:${port}`);
+  console.log(`Server listening on port:${port}`);
 });
